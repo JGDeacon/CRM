@@ -10,8 +10,8 @@ namespace CRMModels.Create
     {
         //CreatedBy, WorkflowTriggerID, DateTimeOffset, and DateTimeOffset are assigned at the Service Layer
         public string WorkflowTriggerName { get; set; }   
-        public Guid WorkflowID { get; set; }
-        public Guid TemplateID { get; set; }
+        public int WorkflowID { get; set; }
+        public int TemplateID { get; set; }
         public int ContactMethodID { get; set; }
         public string TriggerLogic { get; set; }
     }

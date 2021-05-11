@@ -9,7 +9,7 @@ namespace CRMModels.Read
     public class ReadWorkflowContactList
     {
         public int ContactListID { get; set; }
-        public Guid WorkflowID { get; set; }
+        public int WorkflowID { get; set; }
         public bool IsSubscribed { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }

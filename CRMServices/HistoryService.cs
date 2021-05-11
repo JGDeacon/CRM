@@ -25,7 +25,6 @@ namespace CRMServices
                     CompanyID = model.CompanyID,
                     UserID = model.UserID,
                     Table = model.Table,
-                    GuidID = model.GuidID,
                     IntID = model.IntID,
                     Change = model.Change,
                     CreatedDateUTC = DateTimeOffset.UtcNow
@@ -33,7 +32,7 @@ namespace CRMServices
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<ReadHistory> GetHistory(Guid CompanyID)
+        public IEnumerable<ReadHistory> GetHistory(int CompanyID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -43,7 +42,6 @@ namespace CRMServices
                     CompanyName = ctx.Companies.FirstOrDefault(g => g.CompanyID == f.CompanyID).CompanyName,
                     Username = ctx.Users.FirstOrDefault(h => h.Id.ToString() == f.UserID.ToString()).UserName,
                     Table = f.Table,
-                    GuidID = f.GuidID,
                     IntID = f.IntID,
                     Change = f.Change,
                     CreatedDateUTC = f.CreatedDateUTC

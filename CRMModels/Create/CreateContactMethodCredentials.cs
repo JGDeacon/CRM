@@ -13,8 +13,8 @@ namespace CRMModels.Create
         [Required]
         public int ContactMethodID { get; set; }
         [Required]
-        public Guid CompanyID { get; set; }
-        public Guid? UserID { get; set; }
+        public int CompanyID { get; set; }
+        public int? UserID { get; set; }
         public string ConnectionString { get; set; }
         public int? Port { get; set; }
         public string Username { get; set; }

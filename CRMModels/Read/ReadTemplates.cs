@@ -8,13 +8,13 @@ namespace CRMModels.Read
 {
     public class ReadTemplates
     {
-        public Guid TemplateID { get; set; }
+        public int TemplateID { get; set; }
         public string CompanyName { get; set; }
-        public Guid? UserID { get; set; }
+        public int? UserID { get; set; }
         public int ContactMethodID { get; set; }
         public string ContactMethodName { get; set; }
         public string Content { get; set; }
-        public Guid? PreviewLinkGuid { get; set; }
+        public int? PreviewLinkint { get; set; }
         public bool IsPublic { get; set; }
         public bool IsApproved { get; set; }
         public bool IsActive { get; set; }

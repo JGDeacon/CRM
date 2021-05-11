@@ -3,7 +3,7 @@ namespace CRMData.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace CRMData.Migrations
                 "dbo.Companies",
                 c => new
                     {
-                        CompanyID = c.Guid(nullable: false),
+                        CompanyID = c.Int(nullable: false, identity: true),
                         CompanyName = c.String(nullable: false),
                         IsActive = c.Boolean(nullable: false),
                         LogoURL = c.String(nullable: false),
@@ -32,7 +32,7 @@ namespace CRMData.Migrations
                 c => new
                     {
                         ContactListID = c.Int(nullable: false, identity: true),
-                        ContactID = c.Guid(nullable: false),
+                        ContactID = c.Int(nullable: false),
                         EndUserID = c.String(maxLength: 128),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
@@ -51,6 +51,8 @@ namespace CRMData.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         DepartmentID = c.Guid(nullable: false),
                         CompanyID = c.Guid(nullable: false),
+                        CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
+                        ModifiedDateUTC = c.DateTimeOffset(precision: 7),
                         Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -111,7 +113,7 @@ namespace CRMData.Migrations
                 "dbo.Contact",
                 c => new
                     {
-                        ContactID = c.Guid(nullable: false),
+                        ContactID = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 50),
                         LastName = c.String(nullable: false, maxLength: 50),
                         PreferredName = c.String(nullable: false, maxLength: 50),
@@ -126,10 +128,10 @@ namespace CRMData.Migrations
                 "dbo.ContactMethodCredentials",
                 c => new
                     {
-                        ID = c.Guid(nullable: false),
+                        ID = c.Int(nullable: false, identity: true),
                         ContactMethodID = c.Int(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
-                        UserID = c.Guid(),
+                        CompanyID = c.Int(nullable: false),
+                        UserID = c.Int(),
                         ConnectionString = c.String(),
                         Port = c.Int(),
                         Username = c.String(),
@@ -158,9 +160,9 @@ namespace CRMData.Migrations
                 "dbo.DepartmentAccess",
                 c => new
                     {
-                        DepartmentID = c.Guid(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
-                        UserID = c.Guid(nullable: false),
+                        DepartmentID = c.Int(nullable: false),
+                        CompanyID = c.Int(nullable: false),
+                        UserID = c.Int(nullable: false),
                         PermissionID = c.Int(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
@@ -175,8 +177,8 @@ namespace CRMData.Migrations
                 "dbo.Departments",
                 c => new
                     {
-                        DepartmentID = c.Guid(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
+                        DepartmentID = c.Int(nullable: false, identity: true),
+                        CompanyID = c.Int(nullable: false),
                         DepartmentName = c.String(nullable: false, maxLength: 50),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
@@ -187,11 +189,10 @@ namespace CRMData.Migrations
                 "dbo.History",
                 c => new
                     {
-                        HistoryID = c.Guid(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
-                        UserID = c.Guid(nullable: false),
+                        HistoryID = c.Int(nullable: false, identity: true),
+                        CompanyID = c.Int(nullable: false),
+                        UserID = c.Int(nullable: false),
                         Table = c.String(),
-                        GuidID = c.Guid(),
                         IntID = c.Int(),
                         Change = c.String(),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
@@ -220,12 +221,12 @@ namespace CRMData.Migrations
                 "dbo.Templates",
                 c => new
                     {
-                        TemplateID = c.Guid(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
-                        UserID = c.Guid(),
+                        TemplateID = c.Int(nullable: false, identity: true),
+                        CompanyID = c.Int(nullable: false),
+                        UserID = c.Int(),
                         ContactMethodID = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        PreviewLinkGuid = c.Guid(),
+                        PreviewLinkint = c.Int(),
                         IsPublic = c.Boolean(nullable: false),
                         IsApproved = c.Boolean(nullable: false),
                         IsActive = c.Boolean(nullable: false),
@@ -259,7 +260,7 @@ namespace CRMData.Migrations
                 c => new
                     {
                         ContactListID = c.Int(nullable: false),
-                        WorkflowID = c.Guid(nullable: false),
+                        WorkflowID = c.Int(nullable: false),
                         IsSubscribed = c.Boolean(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
@@ -274,10 +275,11 @@ namespace CRMData.Migrations
                 "dbo.Workflows",
                 c => new
                     {
-                        WorkflowID = c.Guid(nullable: false),
+                        WorkflowID = c.Int(nullable: false, identity: true),
+                        WorkflowName = c.String(),
                         IsApproved = c.Boolean(nullable: false),
                         ApprovedDate = c.DateTimeOffset(precision: 7),
-                        ApprovedBy = c.Guid(),
+                        ApprovedBy = c.Int(),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
@@ -290,8 +292,8 @@ namespace CRMData.Migrations
                     {
                         WorkflowTriggerID = c.Int(nullable: false, identity: true),
                         WorkflowTriggerName = c.String(),
-                        WorkflowID = c.Guid(nullable: false),
-                        TemplateID = c.Guid(nullable: false),
+                        WorkflowID = c.Int(nullable: false),
+                        TemplateID = c.Int(nullable: false),
                         ContactMethodID = c.Int(nullable: false),
                         TriggerLogic = c.String(),
                         CreatedBy = c.String(maxLength: 128),

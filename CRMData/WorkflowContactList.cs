@@ -17,7 +17,7 @@ namespace CRMData
 
         [Key,Column(Order =1)]
         [ForeignKey(nameof(Workflows))]
-        public Guid WorkflowID { get; set; }
+        public int WorkflowID { get; set; }
         public virtual Workflows Workflows { get; set; }
         public bool IsSubscribed { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }

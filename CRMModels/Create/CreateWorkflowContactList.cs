@@ -11,7 +11,7 @@ namespace CRMModels.Create
         //ContactListID & WorkflowID make up a Composite key
         //CreatedDateUTC and ModifiedDateUTC are set by the Service Layer.
         public int ContactListID { get; set; }
-        public Guid WorkflowID { get; set; }
+        public int WorkflowID { get; set; }
         public bool IsSubscribed { get; set; }
     }
 }

@@ -11,16 +11,16 @@ namespace CRMData
     public class Templates
     {
         [Key]
-        public Guid TemplateID { get; set; }
+        public int TemplateID { get; set; }
         [ForeignKey(nameof(Companies))]
-        public Guid CompanyID { get; set; }
+        public int CompanyID { get; set; }
         public virtual Companies Companies { get; set; }
-        public Guid? UserID { get; set; }
+        public int? UserID { get; set; }
         [Required]
         public int ContactMethodID { get; set; }
         [Required]
         public string Content { get; set; }
-        public Guid? PreviewLinkGuid { get; set; }
+        public int? PreviewLinkint { get; set; }
         [Required]
         public bool IsPublic { get; set; }
         [Required]

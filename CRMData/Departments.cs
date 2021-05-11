@@ -11,8 +11,8 @@ namespace CRMData
     public class Departments
     {
         [Key]
-        public Guid DepartmentID { get; set; }
-        public Guid CompanyID { get; set; }
+        public int DepartmentID { get; set; }
+        public int CompanyID { get; set; }
         [Required,MaxLength(50,ErrorMessage ="Too Long")]
         public string DepartmentName { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }

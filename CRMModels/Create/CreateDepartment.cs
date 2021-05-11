@@ -9,8 +9,7 @@ namespace CRMModels.Create
 {
     public class CreateDepartment
     {
-        //DepartmentID, CreatedDateUTC, and ModifiedDateUTC are set by the Service Layer.
-        public Guid CompanyID { get; set; }
+        //CompanyID, DepartmentID, CreatedDateUTC, and ModifiedDateUTC are set by the Service Layer.
         [Required, MaxLength(50, ErrorMessage = "Too Long")]
         public string DepartmentName { get; set; }
     }

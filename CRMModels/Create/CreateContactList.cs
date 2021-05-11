@@ -11,7 +11,7 @@ namespace CRMModels.Create
     {
         //ContactListID, CreatedDateUTC, and ModifiedDateUTC are set by the Service Layer.
         [Required]
-        public Guid ContactID { get; set; }
+        public int ContactID { get; set; }
         [Required]
         public string EndUserID { get; set; }
         [Required]

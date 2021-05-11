@@ -8,11 +8,11 @@ namespace CRMModels.Read
 {
     class ReadContactMethodCredentials
     {
-        public Guid ID { get; set; }   
+        public int ID { get; set; }   
         public int ContactMethodID { get; set; }
         public string ContactMethod { get; set; }
         public string CompanyName { get; set; }
-        public Guid? UserID { get; set; }
+        public int? UserID { get; set; }
         public string ConnectionString { get; set; }
         public int? Port { get; set; }
         public string Username { get; set; }

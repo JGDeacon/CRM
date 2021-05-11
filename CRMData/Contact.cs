@@ -10,7 +10,7 @@ namespace CRMData
     public class Contact
     {
         [Key]
-        public Guid ContactID { get; set; }
+        public int ContactID { get; set; }
         [Required, MinLength(1,ErrorMessage ="Too Short"),MaxLength(50,ErrorMessage = "Too long")]
         public string FirstName { get; set; }
         [Required, MinLength(1, ErrorMessage = "Too Short"), MaxLength(50, ErrorMessage = "Too long")]

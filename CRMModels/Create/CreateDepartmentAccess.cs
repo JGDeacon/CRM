@@ -9,9 +9,9 @@ namespace CRMModels.Create
     class CreateDepartmentAccess
     {
         //DepartmentID and CompanyID are parts of a Composite Key
-        public Guid DepartmentID { get; set; }
-        public Guid CompanyID { get; set; }
-        public Guid UserID { get; set; }
+        public int DepartmentID { get; set; }
+        public int CompanyID { get; set; }
+        public int UserID { get; set; }
         public int PermissionID { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace CRMModels.Read
 {
     public class ReadCompany
     {
-        public Guid CompanyID { get; set; }
+        public int CompanyID { get; set; }
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
         [Display(Name = "Active")]

@@ -10,7 +10,7 @@ namespace CRMData
     public class Companies
     {
         [Key]
-        public Guid CompanyID { get; set; }
+        public int CompanyID { get; set; }
         [Required]
         public string CompanyName { get; set; }
         [Required]

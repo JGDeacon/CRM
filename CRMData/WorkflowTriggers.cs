@@ -14,10 +14,10 @@ namespace CRMData
         public int WorkflowTriggerID { get; set; }
         public string WorkflowTriggerName { get; set; }
         [ForeignKey(nameof(Workflows))]
-        public Guid WorkflowID { get; set; }
+        public int WorkflowID { get; set; }
         public virtual Workflows Workflows { get; set; }
         [ForeignKey(nameof(Templates))]
-        public Guid TemplateID { get; set; }
+        public int TemplateID { get; set; }
         public virtual Templates Templates { get; set; }
         public int ContactMethodID { get; set; }
         public string TriggerLogic { get; set; }

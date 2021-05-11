@@ -11,14 +11,14 @@ namespace CRMData
     public class ContactMethodCredentials
     {
         [Key]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
         [ForeignKey(nameof(ContactMethods))]
         public int ContactMethodID { get; set; }
         public virtual ContactMethods ContactMethods { get; set; }
         [ForeignKey(nameof(Companies))]
-        public Guid CompanyID { get; set; }
+        public int CompanyID { get; set; }
         public virtual Companies Companies { get; set; }
-        public Guid? UserID { get; set; }
+        public int? UserID { get; set; }
         public string ConnectionString { get; set; }
         public int? Port { get; set; }
         public string Username { get; set; }

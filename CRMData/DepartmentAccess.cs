@@ -12,14 +12,14 @@ namespace CRMData
     {
         [Key, Column(Order = 0)]
         [ForeignKey(nameof(Departments))]
-        public Guid DepartmentID { get; set; }
+        public int DepartmentID { get; set; }
         public virtual Departments Departments { get; set; }
 
         [Key, Column(Order = 1)]
         [ForeignKey(nameof(Companies))]
-        public Guid CompanyID { get; set; }
+        public int CompanyID { get; set; }
         public virtual Companies Companies { get; set; }
-        public Guid UserID { get; set; }
+        public int UserID { get; set; }
         public int PermissionID { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }

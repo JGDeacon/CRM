@@ -13,7 +13,7 @@ namespace CRMData
         [Key]
         public int ContactListID { get; set; }
         [ForeignKey(nameof(Contact))]
-        public Guid ContactID { get; set; }
+        public int ContactID { get; set; }
         public virtual Contact Contact { get; set; }
 
         

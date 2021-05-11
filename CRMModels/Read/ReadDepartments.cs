@@ -8,8 +8,8 @@ namespace CRMModels.Read
 {
     public class ReadDepartments
     {
-        public Guid DepartmentID { get; set; }
-        public Guid CompanyID { get; set; }
+        public int DepartmentID { get; set; }
+        public int CompanyID { get; set; }
         public string DepartmentName { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }

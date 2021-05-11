@@ -85,13 +85,9 @@
     <Compile Include="History.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="keyAttribute.cs" />
-    <Compile Include="Migrations\202105111350326_Initial.cs" />
-    <Compile Include="Migrations\202105111350326_Initial.Designer.cs">
-      <DependentUpon>202105111350326_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105111352221_AddCreatedModifiedToApplicationUser.cs" />
-    <Compile Include="Migrations\202105111352221_AddCreatedModifiedToApplicationUser.Designer.cs">
-      <DependentUpon>202105111352221_AddCreatedModifiedToApplicationUser.cs</DependentUpon>
+    <Compile Include="Migrations\202105111959320_InitialMigration.cs" />
+    <Compile Include="Migrations\202105111959320_InitialMigration.Designer.cs">
+      <DependentUpon>202105111959320_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permissions.cs" />
@@ -107,11 +103,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105111350326_Initial.resx">
-      <DependentUpon>202105111350326_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105111352221_AddCreatedModifiedToApplicationUser.resx">
-      <DependentUpon>202105111352221_AddCreatedModifiedToApplicationUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105111959320_InitialMigration.resx">
+      <DependentUpon>202105111959320_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

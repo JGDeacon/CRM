@@ -11,13 +11,13 @@ namespace CRMModels.Create
     {
         //EndUser Tempalate cannot approve or make active. TempalteID, CreatedDateUTC, and ModifiedDateUTC are set by the Service Layer.
         //ApprovedBy is set at the Service Layer
-        public Guid CompanyID { get; set; }
-        public Guid? UserID { get; set; }
+        public int CompanyID { get; set; }
+        public int? UserID { get; set; }
         [Required]
         public int ContactMethodID { get; set; }
         [Required]
         public string Content { get; set; }
-        public Guid? PreviewLinkGuid { get; set; }
+        public int? PreviewLinkint { get; set; }
         [Required]
         public bool IsPublic { get; set; }
         [Required]
