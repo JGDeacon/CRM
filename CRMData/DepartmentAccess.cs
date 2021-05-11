@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,15 @@ namespace CRMData
 {
     public class DepartmentAccess
     {
-        [Key]
+        [Key, Column(Order = 0)]
+        [ForeignKey(nameof(Departments))]
         public Guid DepartmentID { get; set; }
-        [Key]
+        public virtual Departments Departments { get; set; }
+
+        [Key, Column(Order = 1)]
+        [ForeignKey(nameof(Companies))]
         public Guid CompanyID { get; set; }
+        public virtual Companies Companies { get; set; }
         public Guid UserID { get; set; }
         public int PermissionID { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
