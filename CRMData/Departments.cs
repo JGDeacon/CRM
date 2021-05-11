@@ -12,9 +12,7 @@ namespace CRMData
     {
         [Key]
         public Guid DepartmentID { get; set; }
-        [ForeignKey(nameof(Companies))]
         public Guid CompanyID { get; set; }
-        public virtual Companies Companies { get; set; }
         [Required,MaxLength(50,ErrorMessage ="Too Long")]
         public string DepartmentName { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }

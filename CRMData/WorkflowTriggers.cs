@@ -22,7 +22,7 @@ namespace CRMData
         public int ContactMethodID { get; set; }
         public string TriggerLogic { get; set; }
         [ForeignKey(nameof(ApplicationUser))]
-        public Guid CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }

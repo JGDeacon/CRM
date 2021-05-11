@@ -10,14 +10,15 @@ namespace CRMData
 {
     public class ContactList
     {
-        [Key,Column(Order =0)]
+        [Key]
+        public int ContactListID { get; set; }
         [ForeignKey(nameof(Contact))]
         public Guid ContactID { get; set; }
         public virtual Contact Contact { get; set; }
 
-        [Key,Column(Order =1)]
+        
         [ForeignKey(nameof(ApplicationUser))]
-        public Guid EndUserID { get; set; }
+        public string EndUserID { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public bool IsActive { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }

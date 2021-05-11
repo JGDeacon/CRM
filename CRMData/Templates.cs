@@ -29,7 +29,7 @@ namespace CRMData
         public bool IsActive { get; set; }
         public DateTimeOffset ApprovedDateUTC { get; set; }
         [ForeignKey(nameof(ApplicationUser))]
-        public Guid ApprovedBy { get; set; }
+        public string ApprovedBy { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }
