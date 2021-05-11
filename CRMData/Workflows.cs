@@ -12,6 +12,7 @@ namespace CRMData
     {
         [Key]
         public Guid WorkflowID { get; set; }
+        public string WorkflowName { get; set; }
         [DefaultValue(false)]
         public bool IsApproved { get; set; }
         public DateTimeOffset? ApprovedDate { get; set; }
