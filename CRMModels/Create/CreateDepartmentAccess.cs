@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace CRMModels.Create
 {
-    class CreateDepartmentAccess
+    public class CreateDepartmentAccess
     {
-        //DepartmentID and CompanyID are parts of a Composite Key
+        //DepartmentID and CompanyID are parts of a Composite Key. CompanyID is set at the Service Layer
         public int DepartmentID { get; set; }
-        public int CompanyID { get; set; }
         public int UserID { get; set; }
         public int PermissionID { get; set; }
     }

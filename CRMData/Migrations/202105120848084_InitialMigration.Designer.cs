@@ -13,7 +13,7 @@ namespace CRMData.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202105111959320_InitialMigration"; }
+            get { return "202105120848084_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

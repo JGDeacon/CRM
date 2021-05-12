@@ -74,10 +74,12 @@
     <Compile Include="Create\CreateDepartment.cs" />
     <Compile Include="Create\CreateDepartmentAccess.cs" />
     <Compile Include="Create\CreateHistory.cs" />
+    <Compile Include="Create\CreatePassword.cs" />
     <Compile Include="Create\CreatePermissions.cs" />
     <Compile Include="Create\CreateTemplateAdmin.cs" />
     <Compile Include="Create\CreateTemplateEndUser.cs" />
     <Compile Include="Create\CreateTransaction.cs" />
+    <Compile Include="Create\CreateUser.cs" />
     <Compile Include="Create\CreateWorkflowAdmin.cs" />
     <Compile Include="Create\CreateWorkflowContactList.cs" />
     <Compile Include="Create\CreateWorkflowsEndUser.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Read\ReadPermissions.cs" />
     <Compile Include="Read\ReadTemplates.cs" />
     <Compile Include="Read\ReadTransactions.cs" />
+    <Compile Include="Read\ReadUser.cs" />
     <Compile Include="Read\ReadWorkflowContactList.cs" />
     <Compile Include="Read\ReadWorkflows.cs" />
   </ItemGroup>

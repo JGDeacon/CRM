@@ -49,8 +49,8 @@ namespace CRMData.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        DepartmentID = c.Guid(nullable: false),
-                        CompanyID = c.Guid(nullable: false),
+                        DepartmentID = c.Int(nullable: false),
+                        CompanyID = c.Int(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
                         Email = c.String(),
