@@ -26,7 +26,7 @@ namespace CRMServices
                     UserID = model.UserID,
                     Table = model.Table,
                     IntID = model.IntID,
-                    Change = model.Change,
+                    Request = model.Request,
                     CreatedDateUTC = DateTimeOffset.UtcNow
                 });
                 return ctx.SaveChanges() == 1;
@@ -43,7 +43,7 @@ namespace CRMServices
                     Username = ctx.Users.FirstOrDefault(h => h.Id.ToString() == f.UserID.ToString()).UserName,
                     Table = f.Table,
                     IntID = f.IntID,
-                    Change = f.Change,
+                    Request = f.Request,
                     CreatedDateUTC = f.CreatedDateUTC
                 });
                 return query.ToList();

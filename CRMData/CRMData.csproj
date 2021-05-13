@@ -89,6 +89,14 @@
     <Compile Include="Migrations\202105120848084_InitialMigration.Designer.cs">
       <DependentUpon>202105120848084_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105131222053_UpdateHistoryTable.cs" />
+    <Compile Include="Migrations\202105131222053_UpdateHistoryTable.Designer.cs">
+      <DependentUpon>202105131222053_UpdateHistoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105131223556_UpdateHistoryTableUserID.cs" />
+    <Compile Include="Migrations\202105131223556_UpdateHistoryTableUserID.Designer.cs">
+      <DependentUpon>202105131223556_UpdateHistoryTableUserID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +113,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105120848084_InitialMigration.resx">
       <DependentUpon>202105120848084_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131222053_UpdateHistoryTable.resx">
+      <DependentUpon>202105131222053_UpdateHistoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131223556_UpdateHistoryTableUserID.resx">
+      <DependentUpon>202105131223556_UpdateHistoryTableUserID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

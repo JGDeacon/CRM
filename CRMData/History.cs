@@ -12,10 +12,11 @@ namespace CRMData
         [Key]
         public int HistoryID { get; set; }
         public int CompanyID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string Table { get; set; }
+        public string Method { get; set; }
         public int? IntID { get; set; }
-        public string Change { get; set; }
+        public string Request { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }        
     }
 }

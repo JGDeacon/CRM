@@ -181,6 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -247,9 +248,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Administration\Departments.cshtml" />
+    <Content Include="Views\Administration\Create.cshtml" />
+    <Content Include="Views\Administration\CreateDepartment.cshtml" />
+    <Content Include="Views\Administration\Users.cshtml" />
+    <Content Include="Views\Administration\DepartmentCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Administration\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -268,6 +275,14 @@
     <ProjectReference Include="..\CRMData\CRMData.csproj">
       <Project>{15EE7574-8FE1-4E41-B07F-AE6D98D17140}</Project>
       <Name>CRMData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRMModels\CRMModels.csproj">
+      <Project>{7A13658E-FC15-469C-B9F2-403A996F73EA}</Project>
+      <Name>CRMModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRMServices\CRMServices.csproj">
+      <Project>{7BD8A06F-6B27-4E19-A6C6-250BDED25EEC}</Project>
+      <Name>CRMServices</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

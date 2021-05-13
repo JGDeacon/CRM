@@ -10,7 +10,7 @@ namespace CRMModels.Create
     public class CreateDepartment
     {
         //CompanyID, DepartmentID, CreatedDateUTC, and ModifiedDateUTC are set by the Service Layer.
-        [Required, MaxLength(50, ErrorMessage = "Too Long")]
+        [Required, MaxLength(50, ErrorMessage = "Too Long"),Display(Name = "Department Name")]
         public string DepartmentName { get; set; }
     }
 }

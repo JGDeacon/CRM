@@ -12,8 +12,9 @@ namespace CRMModels.Read
         public string CompanyName { get; set; }
         public string Username { get; set; }
         public string Table { get; set; }
+        public string Method { get; set; }
         public int? IntID { get; set; }
-        public string Change { get; set; }
+        public string Request { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
     }
 }

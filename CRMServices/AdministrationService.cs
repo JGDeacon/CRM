@@ -33,6 +33,16 @@ namespace CRMServices
                 CreatedDateUTC = g.CreatedDateUTC,
                 ModifiedDateUTC = g.ModifiedDateUTC
             });
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                Method = $"GetDepartments()",
+                IntID = null,
+                Request = "GetDepartmentAccess()",
+            };
+            AddHistory(history);
             return query.ToList();
         }
         public bool AddDepartment(CreateDepartment model)
@@ -43,7 +53,16 @@ namespace CRMServices
                 DepartmentName = model.DepartmentName,
                 CreatedDateUTC = DateTimeOffset.UtcNow
             }) ;
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                Method = $"AddDepartment(CreateDepartment model)",
+                IntID = null,
+                Request = model.ToString()
+            };
+            return AddHistory(history);            
         }
         public bool EditDepartment(int id, CreateDepartment model)
         {
@@ -54,7 +73,16 @@ namespace CRMServices
             }
             departments.DepartmentName = model.DepartmentName;
             departments.ModifiedDateUTC = DateTimeOffset.UtcNow;
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                Method = $"EditDepartment({id}, CreateDepartment model)",
+                IntID = id,
+                Request = model.ToString()
+            };
+            return AddHistory(history);
         }
         public bool DeleteDepartment(int id)
         {
@@ -64,7 +92,16 @@ namespace CRMServices
                 return false;
             }
             ctx.Departments.Remove(department);
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                Method = $"DeleteDepartment({id})",
+                IntID = id,
+                Request = $"DeleteDepartment({id})"
+            };
+            return AddHistory(history);
         }
         //Users Section
         //Used by Helpdesk and Admin Roles
@@ -82,7 +119,19 @@ namespace CRMServices
                 SecurityStamp = Guid.NewGuid().ToString(),
                 CreatedDateUTC = DateTimeOffset.UtcNow
             });
-            return ctx.SaveChanges() == 1;
+            //Sanataize Password in Model
+            model.Password = "";
+            model.ConfirmPassword = "";
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"AddUser(CreateUser model)",
+                IntID = null,
+                Request = model.ToString()
+            };
+            return AddHistory(history);
         }
         //Update User
         public bool EditUser(Guid id, CreateUser model)
@@ -99,8 +148,19 @@ namespace CRMServices
             user.Email = model.Email;
             user.PasswordHash = ph.HashPassword(model.Password);
             user.SecurityStamp = Guid.NewGuid().ToString();
-                        
-            return ctx.SaveChanges() == 1;
+            //Sanataize Password in Model
+            model.Password = "";
+            model.ConfirmPassword = "";
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"EditUser({id}, CreateUser model",
+                IntID = null,
+                Request = model.ToString()
+            };
+            return AddHistory(history);
         }
         //Disable User
         public bool DisableUser(Guid id)
@@ -111,7 +171,16 @@ namespace CRMServices
                 return false;
             }
             user.LockoutEnabled = true;
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"DisableUser({id})",
+                IntID = null,
+                Request = $"DisableUser({id})"
+            };
+            return AddHistory(history);
         }
         //Enable User
         public bool EnableUser(Guid id)
@@ -122,15 +191,35 @@ namespace CRMServices
                 return false;
             }
             user.LockoutEnabled = false;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"EnableUser({id})",
+                IntID = null,
+                Request = $"EnableUser({id})"
+            };
+            AddHistory(history);
             return ctx.SaveChanges() == 1;
         }
         //Change Password - This should be accessable by every non disabled user. This may move to a new service.
         public bool ResetPassword(CreatePassword model)
-        {
+        {   
             PasswordHasher ph = new PasswordHasher();
             ApplicationUser user = ctx.Users.Single(e => e.Id.ToString() == _userID.ToString());
             user.PasswordHash = ph.HashPassword(model.Password);
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"ResetPassword(CreatePassword model)",
+                IntID = null,
+                Request = "ResetPassword(CreatePassword model)"
+            };
+            AddHistory(history);
+            return ctx.SaveChanges() == 1;            
         }
         //List Users
         public IEnumerable<ReadUser> GetAllUsers()
@@ -145,6 +234,16 @@ namespace CRMServices
                 IsLocked = f.LockoutEnabled,
                 CreatedDateUTC = f.CreatedDateUTC
             });
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"GetAllUsers()",
+                IntID = null,
+                Request = "GetAllUsers()"
+            };
+            AddHistory(history);
             return query.ToList();
         }
 
@@ -171,6 +270,16 @@ namespace CRMServices
                 IsLocked = user.LockoutEnabled,
                 CreatedDateUTC = user.CreatedDateUTC
             };
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Users",
+                Method = $"GetUser({id})",
+                IntID = null,
+                Request = $"GetUser({id})"
+            };
+            AddHistory(history);
             return readUser;
         }
         //DepartmentAccess Section
@@ -179,7 +288,17 @@ namespace CRMServices
         public bool AddDepartmentAccess(CreateDepartmentAccess model)
         {
             ctx.DepartmentAccess.Add(new DepartmentAccess { DepartmentID = model.DepartmentID, CompanyID = _companyID, UserID = model.UserID, PermissionID = model.PermissionID, CreatedDateUTC = DateTimeOffset.UtcNow });
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "DepartmentAccess",
+                Method = $"AddDepartmentAccess(CreateDepartmentAccess model)",
+                IntID = null,
+                Request = model.ToString()
+            };
+            return AddHistory(history);
+
         }
         //Edit DepartmentAccess
         public bool EditDepartmentAccess(string id, CreateDepartmentAccess model)
@@ -197,7 +316,16 @@ namespace CRMServices
             departmentAccess.UserID = model.UserID;
             departmentAccess.PermissionID = model.PermissionID;
             departmentAccess.ModifiedDateUTC = DateTimeOffset.UtcNow;
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "DepartmentAccess",
+                Method = $"EditDepartmentAccess({id}, CreateDepartmentAccess model)",
+                IntID = null,
+                Request = model.ToString()
+            };
+            return AddHistory(history);
         }
         //Delete DepartmentAccess
         public bool DeleteDepartmentAccess(string id)
@@ -212,11 +340,82 @@ namespace CRMServices
                 return false;
             }
             ctx.DepartmentAccess.Remove(departmentAccess);
-            return ctx.SaveChanges() == 1;
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "DepartmentAccess",
+                Method = $"DeleteDepartmentAccess({id})",
+                IntID = null,
+                Request = $"DeleteDepartmentAccess({id})"
+            };
+            return AddHistory(history);
         }
         //List DepartmentAccess
         public IEnumerable<ReadDepartmentAccess> GetAllDepartmentAccess()
-
+        {
+            var query = ctx.DepartmentAccess.Where(e => e.CompanyID == _companyID).Select(f => new ReadDepartmentAccess
+            {
+                DepartmentID = f.DepartmentID,
+                CompanyID = f.CompanyID,
+                DepartmentName = f.Companies.CompanyName,
+                UserID = f.UserID,
+                PermissionID = f.PermissionID,
+                CreatedDateUTC = f.CreatedDateUTC,
+                ModifiedDateUTC = f.ModifiedDateUTC
+            });
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "DepartmentAccess",
+                Method = $"GetAllDepartmentAccess()",
+                IntID = null,
+                Request = $"GetAllDepartmentAccess()"
+            };
+            AddHistory(history);
+            return query.ToList();
+        }
         //Get DepartmentAccess
+        public ReadDepartmentAccess GetDepartmentAccess(int id)
+        {
+            DepartmentAccess departmentAccess = ctx.DepartmentAccess.Single(e => e.CompanyID == _companyID && e.DepartmentID == id);
+            ReadDepartmentAccess readDepartmentAccess = new ReadDepartmentAccess
+            {
+                DepartmentID = departmentAccess.DepartmentID,
+                CompanyID = departmentAccess.CompanyID,
+                DepartmentName = departmentAccess.Companies.CompanyName,
+                UserID = departmentAccess.UserID,
+                PermissionID = departmentAccess.PermissionID,
+                CreatedDateUTC = departmentAccess.CreatedDateUTC,
+                ModifiedDateUTC = departmentAccess.ModifiedDateUTC
+            };
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "DepartmentAccess",
+                Method = $"GetDepartmentAccess({id})",
+                IntID = id,
+                Request = $"GetDepartmentAccess({id})"
+            };
+            AddHistory(history);
+            return readDepartmentAccess;
+        }
+        //Populate History Table
+        private bool AddHistory(CreateHistory model)
+        {
+            ctx.History.Add(new History
+            {
+                CompanyID = model.CompanyID,
+                UserID = model.UserID,
+                Table = model.Table,
+                Method = model.Method,
+                IntID = model.IntID,
+                Request = model.Request,
+                CreatedDateUTC = DateTimeOffset.UtcNow
+            });
+            return ctx.SaveChanges()>0;
+        }
     }
 }
