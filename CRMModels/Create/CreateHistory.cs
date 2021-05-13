@@ -13,7 +13,7 @@ namespace CRMModels.Create
         public string UserID { get; set; }
         public string Table { get; set; }
         public string Method { get; set; }
-        public int? IntID { get; set; }
+        public string stringID { get; set; }
         public string Request { get; set; }
     }
 }

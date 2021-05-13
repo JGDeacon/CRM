@@ -13,7 +13,9 @@ namespace CRMModels.Read
         public int CompanyID { get; set; }
         [Display(Name = "Department Name")]
         public string DepartmentName { get; set; }
+        [Display(Name = "Created Date (UTC)")]
         public DateTimeOffset CreatedDateUTC { get; set; }
+        [Display(Name = "Modified Date (UTC)")]
         public DateTimeOffset? ModifiedDateUTC { get; set; }
     }
 }

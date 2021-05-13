@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<CRMModels.Read.ReadDepartments>
 
+@{
+    ViewBag.Title = "Departments";
+}
+
+<h2>Departments</h2>
+
 <p>
-    @Html.ActionLink("Create New Department", "DepartmentCreate")
+    @Html.ActionLink("Create Department", "DepartmentCreate")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyID)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.DepartmentName)
         </th>
@@ -26,12 +26,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DepartmentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.DepartmentName)
         </td>
         <td>
@@ -41,9 +35,8 @@
             @Html.DisplayFor(modelItem => item.ModifiedDateUTC)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "DepartmentEdit", new {id=item.DepartmentID}) |           
+            @Html.ActionLink("Delete", "DepartmentDelete", new { id = item.DepartmentID})
         </td>
     </tr>
 }

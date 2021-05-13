@@ -1,10 +1,13 @@
 ﻿using CRMData;
 using CRMModels.Create;
+using CRMModels.Edit;
 using CRMModels.Read;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +26,7 @@ namespace CRMServices
             _companyID = ctx.Users.Single(e => e.Id.ToString() == userID.ToString()).CompanyID;
         }
         //Departments Section
-        public IEnumerable<ReadDepartments> GetDepartments()
+        public IEnumerable<ReadDepartments> GetAllDepartments()
         {
             var query = ctx.Departments.Where(e => e.CompanyID == _companyID).Select(g => new ReadDepartments
             {
@@ -38,12 +41,32 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Departments",
-                Method = $"GetDepartments()",
-                IntID = null,
-                Request = "GetDepartmentAccess()",
+                Method = $"GetAllDepartments()",
+                stringID = null,
+                Request = "GetAllDepartment()",
             };
             AddHistory(history);
             return query.ToList();
+        }
+        public EditDepartment GetDepartment(int id)
+        {
+            Departments department = ctx.Departments.Single(e => e.CompanyID == _companyID && e.DepartmentID == id);
+            EditDepartment editDepartment = new EditDepartment
+            {
+                DepartmentID = department.DepartmentID,
+                DepartmentName = department.DepartmentName,
+            };
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                Method = $"GetDepartment()",
+                stringID = id.ToString(),
+                Request = "GetDepartment()",
+            };
+            AddHistory(history);
+            return editDepartment;
         }
         public bool AddDepartment(CreateDepartment model)
         {
@@ -59,12 +82,12 @@ namespace CRMServices
                 UserID = _userID.ToString(),
                 Table = "Departments",
                 Method = $"AddDepartment(CreateDepartment model)",
-                IntID = null,
-                Request = model.ToString()
+                stringID = null,
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);            
         }
-        public bool EditDepartment(int id, CreateDepartment model)
+        public bool EditDepartment(int id, EditDepartment model)
         {
             Departments departments = ctx.Departments.Find(id);
             if (departments == null)
@@ -78,9 +101,9 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Departments",
-                Method = $"EditDepartment({id}, CreateDepartment model)",
-                IntID = id,
-                Request = model.ToString()
+                Method = $"EditDepartment({id}, EditDepartment model)",
+                stringID = id.ToString(),
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);
         }
@@ -97,8 +120,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Departments",
-                Method = $"DeleteDepartment({id})",
-                IntID = id,
+                stringID = id.ToString(),
                 Request = $"DeleteDepartment({id})"
             };
             return AddHistory(history);
@@ -127,9 +149,8 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"AddUser(CreateUser model)",
-                IntID = null,
-                Request = model.ToString()
+                stringID = null,
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);
         }
@@ -156,9 +177,8 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"EditUser({id}, CreateUser model",
-                IntID = null,
-                Request = model.ToString()
+                stringID = id.ToString(),
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);
         }
@@ -176,8 +196,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"DisableUser({id})",
-                IntID = null,
+                stringID = id.ToString(),
                 Request = $"DisableUser({id})"
             };
             return AddHistory(history);
@@ -196,8 +215,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"EnableUser({id})",
-                IntID = null,
+                stringID = id.ToString(),
                 Request = $"EnableUser({id})"
             };
             AddHistory(history);
@@ -214,8 +232,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"ResetPassword(CreatePassword model)",
-                IntID = null,
+                stringID = null,
                 Request = "ResetPassword(CreatePassword model)"
             };
             AddHistory(history);
@@ -239,8 +256,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"GetAllUsers()",
-                IntID = null,
+                stringID = null,
                 Request = "GetAllUsers()"
             };
             AddHistory(history);
@@ -275,8 +291,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "Users",
-                Method = $"GetUser({id})",
-                IntID = null,
+                stringID = id.ToString(),
                 Request = $"GetUser({id})"
             };
             AddHistory(history);
@@ -293,9 +308,8 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "DepartmentAccess",
-                Method = $"AddDepartmentAccess(CreateDepartmentAccess model)",
-                IntID = null,
-                Request = model.ToString()
+                stringID = null,
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);
 
@@ -321,9 +335,8 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "DepartmentAccess",
-                Method = $"EditDepartmentAccess({id}, CreateDepartmentAccess model)",
-                IntID = null,
-                Request = model.ToString()
+                stringID = id.ToString(),
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
             };
             return AddHistory(history);
         }
@@ -345,8 +358,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "DepartmentAccess",
-                Method = $"DeleteDepartmentAccess({id})",
-                IntID = null,
+                stringID = id.ToString(),
                 Request = $"DeleteDepartmentAccess({id})"
             };
             return AddHistory(history);
@@ -369,8 +381,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "DepartmentAccess",
-                Method = $"GetAllDepartmentAccess()",
-                IntID = null,
+                stringID = null,
                 Request = $"GetAllDepartmentAccess()"
             };
             AddHistory(history);
@@ -395,8 +406,7 @@ namespace CRMServices
                 CompanyID = _companyID,
                 UserID = _userID.ToString(),
                 Table = "DepartmentAccess",
-                Method = $"GetDepartmentAccess({id})",
-                IntID = id,
+                stringID = id.ToString(),
                 Request = $"GetDepartmentAccess({id})"
             };
             AddHistory(history);
@@ -405,13 +415,14 @@ namespace CRMServices
         //Populate History Table
         private bool AddHistory(CreateHistory model)
         {
+            StackFrame stack = new StackFrame(1);
             ctx.History.Add(new History
             {
                 CompanyID = model.CompanyID,
                 UserID = model.UserID,
                 Table = model.Table,
-                Method = model.Method,
-                IntID = model.IntID,
+                Method = stack.GetMethod().Name,
+                stringID = model.stringID,
                 Request = model.Request,
                 CreatedDateUTC = DateTimeOffset.UtcNow
             });

@@ -249,14 +249,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Administration\Departments.cshtml" />
-    <Content Include="Views\Administration\Create.cshtml" />
-    <Content Include="Views\Administration\CreateDepartment.cshtml" />
     <Content Include="Views\Administration\Users.cshtml" />
     <Content Include="Views\Administration\DepartmentCreate.cshtml" />
+    <Content Include="Views\Administration\DepartmentEdit.cshtml" />
+    <Content Include="Views\Administration\DepartmentDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Administration\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

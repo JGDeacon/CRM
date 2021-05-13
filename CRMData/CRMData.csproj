@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202105131223556_UpdateHistoryTableUserID.Designer.cs">
       <DependentUpon>202105131223556_UpdateHistoryTableUserID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105131636437_UpdateHistoryStringID.cs" />
+    <Compile Include="Migrations\202105131636437_UpdateHistoryStringID.Designer.cs">
+      <DependentUpon>202105131636437_UpdateHistoryStringID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105131223556_UpdateHistoryTableUserID.resx">
       <DependentUpon>202105131223556_UpdateHistoryTableUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131636437_UpdateHistoryStringID.resx">
+      <DependentUpon>202105131636437_UpdateHistoryStringID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
