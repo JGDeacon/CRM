@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -13,7 +15,8 @@ namespace CRMData
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
-    {
+    {        
+        public int UserNumber { get; set; }
         public int DepartmentID { get; set; }
         public int CompanyID { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
@@ -62,7 +65,7 @@ namespace CRMData
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Configurations.Add(new IdentityUserLoginConfiguration()).Add(new IdentityUserRoleConfiguration());
+            modelBuilder.Configurations.Add(new IdentityUserLoginConfiguration()).Add(new IdentityUserRoleConfiguration());         
 
         }
     }
@@ -75,6 +78,8 @@ namespace CRMData
     }
     public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
     {
+        [Key]
+        public int RoleNumber { get; set; }
         public IdentityUserRoleConfiguration()
         {
             HasKey(iur => iur.UserId);

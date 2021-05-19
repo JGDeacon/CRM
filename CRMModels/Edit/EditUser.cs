@@ -5,17 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRMModels.Create
+namespace CRMModels.Edit
 {
-    public class CreateUser
+    public class EditUser
     {
-        //Used by the Helpdesk & Admin roles
+        [Required]
+        public Guid UserID { get; set; }
         [Required]
         [Display(Name = "Role")]
         public int RoleID { get; set; }
+        public string RoleName { get; set; }
         [Required]
         [Display(Name = "Department ID")]
         public int DepartmentID { get; set; }
+        public string DepartmentName { get; set; }
 
         [Required]
         [Display(Name = "Username")]
@@ -25,6 +28,8 @@ namespace CRMModels.Create
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "Locked Out")]
+        public bool IsLocked { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

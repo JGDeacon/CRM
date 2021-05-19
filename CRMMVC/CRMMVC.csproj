@@ -182,6 +182,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\ContactAllController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +255,14 @@
     <Content Include="Views\Administration\DepartmentCreate.cshtml" />
     <Content Include="Views\Administration\DepartmentEdit.cshtml" />
     <Content Include="Views\Administration\DepartmentDelete.cshtml" />
+    <Content Include="Views\Administration\UserCreate.cshtml" />
+    <Content Include="Views\Administration\UserEdit.cshtml" />
+    <Content Include="Views\Administration\DepartmentAccess.cshtml" />
+    <Content Include="Views\Administration\DepartmentAccessCreate.cshtml" />
+    <Content Include="Views\Administration\DepartmentAccessEdit.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\ContactCreate.cshtml" />
+    <Content Include="Views\ContactAll\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -85,21 +85,27 @@
     <Compile Include="Create\CreateWorkflowsEndUser.cs" />
     <Compile Include="Create\CreateWorkflowTriggers.cs" />
     <Compile Include="Edit\EditDepartment.cs" />
+    <Compile Include="Edit\EditDepartmentAccess.cs" />
+    <Compile Include="Edit\EditUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read\ReadAllContact.cs" />
     <Compile Include="Read\ReadCompany.cs" />
     <Compile Include="Read\ReadContact.cs" />
     <Compile Include="Read\ReadContactList.cs" />
     <Compile Include="Read\ReadContactMethodCredentials.cs" />
     <Compile Include="Read\ReadContactMethods.cs" />
     <Compile Include="Read\ReadDepartmentAccess.cs" />
+    <Compile Include="Read\ReadDepartmentAccessUserList.cs" />
     <Compile Include="Read\ReadDepartments.cs" />
     <Compile Include="Read\ReadHistory.cs" />
     <Compile Include="Read\ReadPermissions.cs" />
+    <Compile Include="Read\ReadRoleList.cs" />
     <Compile Include="Read\ReadTemplates.cs" />
     <Compile Include="Read\ReadTransactions.cs" />
     <Compile Include="Read\ReadUser.cs" />
     <Compile Include="Read\ReadWorkflowContactList.cs" />
     <Compile Include="Read\ReadWorkflows.cs" />
+    <Compile Include="Support\ApplicationUserPermissions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

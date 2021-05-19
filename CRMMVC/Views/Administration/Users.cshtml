@@ -10,7 +10,22 @@
     @Html.ActionLink("Create User", "UserCreate")
 </p>
 <table class="table">
-    <tr>        
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.DepartmentID)
         </th>
@@ -30,7 +45,22 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>        
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DepartmentID)
         </td>
@@ -47,9 +77,8 @@
             @Html.DisplayFor(modelItem => item.CreatedDateUTC)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "UserEdit", new { id=item.UserID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
         </td>
     </tr>
 }

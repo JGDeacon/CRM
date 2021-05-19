@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministrationService.cs" />
+    <Compile Include="ContactAllService.cs" />
+    <Compile Include="ContactService.cs" />
     <Compile Include="HistoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

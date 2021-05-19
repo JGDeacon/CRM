@@ -3,16 +3,16 @@ namespace CRMData.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UpdateHistoryTableUserID : DbMigration
+    public partial class AddContactOwnerID : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.History", "UserID", c => c.String());
+            AddColumn("dbo.Contact", "OwnerID", c => c.String());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.History", "UserID", c => c.Int(nullable: false));
+            DropColumn("dbo.Contact", "OwnerID");
         }
     }
 }

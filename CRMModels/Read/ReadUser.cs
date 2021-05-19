@@ -15,9 +15,18 @@ namespace CRMModels.Read
         [Display(Name = "Company ID")]
         public int CompanyID { get; set; }
         
+        [Display(Name = "Role ID")]
+        public string RoleID { get; set; }
+
+        [Display(Name = "Role")]
+        public string RoleName { get; set; }
+
+        [Display(Name = "Department Name")]
+        public string Department { get; set; }
+
         [Display(Name = "Department ID")]
         public int DepartmentID { get; set; }
-       
+
         [Display(Name = "Username")]
         public string Username { get; set; }
 

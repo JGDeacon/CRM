@@ -21,6 +21,7 @@ namespace CRMData
         public string Email { get; set; }
         [Required, MinLength(1, ErrorMessage = "Too Short"), MaxLength(50, ErrorMessage = "Too long")]
         public string CellPhone { get; set; }
+        public string OwnerID { get; set; }
         public DateTimeOffset CreatedDateUTC { get; set; }
         public DateTimeOffset? ModifiedDateUTC { get; set; }
     }

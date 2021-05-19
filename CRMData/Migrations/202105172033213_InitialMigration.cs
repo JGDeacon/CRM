@@ -49,6 +49,7 @@ namespace CRMData.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        UserNumber = c.Int(nullable: false),
                         DepartmentID = c.Int(nullable: false),
                         CompanyID = c.Int(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
@@ -160,14 +161,15 @@ namespace CRMData.Migrations
                 "dbo.DepartmentAccess",
                 c => new
                     {
+                        DepartmentAccessID = c.Int(nullable: false, identity: true),
                         DepartmentID = c.Int(nullable: false),
                         CompanyID = c.Int(nullable: false),
-                        UserID = c.Int(nullable: false),
+                        UserID = c.String(),
                         PermissionID = c.Int(nullable: false),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedDateUTC = c.DateTimeOffset(precision: 7),
                     })
-                .PrimaryKey(t => new { t.DepartmentID, t.CompanyID })
+                .PrimaryKey(t => t.DepartmentAccessID)
                 .ForeignKey("dbo.Companies", t => t.CompanyID, cascadeDelete: true)
                 .ForeignKey("dbo.Departments", t => t.DepartmentID, cascadeDelete: true)
                 .Index(t => t.DepartmentID)
@@ -191,10 +193,11 @@ namespace CRMData.Migrations
                     {
                         HistoryID = c.Int(nullable: false, identity: true),
                         CompanyID = c.Int(nullable: false),
-                        UserID = c.Int(nullable: false),
+                        UserID = c.String(),
                         Table = c.String(),
-                        IntID = c.Int(),
-                        Change = c.String(),
+                        Method = c.String(),
+                        stringID = c.String(),
+                        Request = c.String(),
                         CreatedDateUTC = c.DateTimeOffset(nullable: false, precision: 7),
                     })
                 .PrimaryKey(t => t.HistoryID);
