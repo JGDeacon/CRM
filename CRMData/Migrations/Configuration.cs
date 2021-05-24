@@ -108,6 +108,79 @@ namespace CRMData.Migrations
             {
                 RoleManager.Create(new IdentityRole(roleName));
             }
+
+            if (!(context.Companies.Count()==0))
+            {
+                //Companies
+                context.Companies.Add(new Companies
+                {
+                    CompanyName = "BBQ",
+                    IsActive = true,
+                    LogoURL = "TBD",
+                    ContactPerson = "BBQ Joe",
+                    StreetAddress = "131 Main St",
+                    City = "Fort Wayne",
+                    StateProvince = "IN",
+                    Zip = "46816",
+                    Country = "USA",
+                    Phone = "317-554-8898",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                }) ;
+                context.Companies.Add(new Companies
+                {
+                    CompanyName = "Cookies",
+                    IsActive = true,
+                    LogoURL = "TBD",
+                    ContactPerson = "Cookie Kid",
+                    StreetAddress = "332 Sugar Lane",
+                    City = "Churubusco",
+                    StateProvince = "IN",
+                    Zip = "56816",
+                    Country = "USA",
+                    Phone = "260-692-9920",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.SaveChanges();
+                //Departments
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 1,
+                    DepartmentName = "East Coast",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 1,
+                    DepartmentName = "West Coast",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 1,
+                    DepartmentName = "Gulf Coast",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 2,
+                    DepartmentName = "Indiana",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 2,
+                    DepartmentName = "Michigan",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.Departments.Add(new Departments
+                {
+                    CompanyID = 2,
+                    DepartmentName = "Ohio",
+                    CreatedDateUTC = DateTimeOffset.UtcNow
+                });
+                context.SaveChanges();
+
+            }
         }
     }
 }
