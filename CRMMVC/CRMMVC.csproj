@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SupportPagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,14 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\ContactCreate.cshtml" />
     <Content Include="Views\ContactAll\Index.cshtml" />
+    <Content Include="Views\Contact\ContactDelete.cshtml" />
+    <Content Include="Views\Contact\ContactEdit.cshtml" />
+    <Content Include="Views\ContactAll\ContactEdit.cshtml" />
+    <Content Include="Views\ContactAll\ContactDelete.cshtml" />
+    <Content Include="Views\Administration\DepartmentAccessDelete.cshtml" />
+    <Content Include="Views\SupportPages\UseCases.cshtml" />
+    <Content Include="Views\SupportPages\ContactSales.cshtml" />
+    <Content Include="Views\SupportPages\Testimonials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

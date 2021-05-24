@@ -84,6 +84,7 @@
     <Compile Include="Create\CreateWorkflowContactList.cs" />
     <Compile Include="Create\CreateWorkflowsEndUser.cs" />
     <Compile Include="Create\CreateWorkflowTriggers.cs" />
+    <Compile Include="Edit\EditContact.cs" />
     <Compile Include="Edit\EditDepartment.cs" />
     <Compile Include="Edit\EditDepartmentAccess.cs" />
     <Compile Include="Edit\EditUser.cs" />

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CRMModels.Read.ReadDepartmentAccess>
 
 @{
-    ViewBag.Title = "DepartmentAccess";
+    ViewBag.Title = "Department Access";
 }
 
-<h2>DepartmentAccess</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create Department Access", "DepartmentAccessCreate")
@@ -20,13 +20,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Access)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDateUTC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDateUTC)
-        </th>
-        <th></th>
+        
+        <th>Options</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,15 +35,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Access)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDateUTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDateUTC)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "DepartmentAccessEdit", new { id=item.DepartmentAccessID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentAccessID })
+            @Html.ActionLink("Delete", "DepartmentAccessDelete", new { id = item.DepartmentAccessID })
         </td>
     </tr>
 }

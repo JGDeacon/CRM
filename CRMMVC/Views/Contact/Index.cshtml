@@ -1,19 +1,16 @@
 ﻿@model IEnumerable<CRMModels.Read.ReadContact>
 
 @{
-    ViewBag.Title = "Contact List";
+    ViewBag.Title = "My Contacts";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "ContactCreate")
+    @Html.ActionLink("Create Contact", "ContactCreate")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactID)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -29,20 +26,11 @@
         <th>
             @Html.DisplayNameFor(model => model.CellPhone)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDateUTC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDateUTC)
-        </th>
-        <th></th>
+        <th>Options</th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactID)
-        </td>
+    <tr>        
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -59,15 +47,8 @@
             @Html.DisplayFor(modelItem => item.CellPhone)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedDateUTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDateUTC)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "ContactEdit", new { id=item.ContactID }) |
+            @Html.ActionLink("Delete", "ContactDelete", new { id = item.ContactID })
         </td>
     </tr>
 }

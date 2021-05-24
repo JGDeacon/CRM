@@ -1,24 +1,17 @@
 ﻿@model CRMModels.Edit.EditDepartment
 
 @{
-    ViewBag.Title = "DepartmentDelete";
+    ViewBag.Title = "Delete Department";
 }
 
-<h2>DepartmentDelete</h2>
+<h2>@ViewBag.Title</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this department?</h3>
 <div>
-    <h4>EditDepartment</h4>
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartmentID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentID)
-        </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
@@ -34,7 +27,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "/Departments")
         </div>
     }
 </div>

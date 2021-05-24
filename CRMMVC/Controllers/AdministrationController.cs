@@ -18,59 +18,7 @@ namespace CRMMVC.Controllers
         {
             //string userRole;
             var userID = Guid.Parse(User.Identity.GetUserId());
-            //Try this for the Role Membership
-            //The service is setting the User Role
-
-
-            ////if (User.IsInRole("Administrator"))
-            ////{
-            ////    userRole = "Administrator";
-            ////}
-            ////else if (User.IsInRole("Marketing Admin"))
-            ////{
-            ////    userRole = "Marketing Admin";
-            ////}
-            ////else if (User.IsInRole("Marketing User"))
-            ////{
-            ////    userRole = "Marketing User";
-            ////}
-            ////else if (User.IsInRole("Analyst"))
-            ////{
-            ////    userRole = "Analyst";
-            ////}
-            ////else if (User.IsInRole("Manager"))
-            ////{
-            ////    userRole = "Manager";
-            ////}
-            ////else if (User.IsInRole("End User"))
-            ////{
-            ////    userRole = "End User";
-            ////}
-            ////else if (User.IsInRole("Developer"))
-            ////{
-            ////    userRole = "Developer";
-            ////}
-            ////else if (User.IsInRole("Contact"))
-            ////{
-            ////    userRole = "Contact";
-            ////}
-            ////else if (User.IsInRole("Vendor"))
-            ////{
-            ////    userRole = "Vendor";
-            ////}
-            ////else if (User.IsInRole("Compliance"))
-            ////{
-            ////    userRole = "Compliance";
-            ////}
-            ////else if (User.IsInRole("Helpdesk"))
-            ////{
-            ////    userRole = "Helpdesk";
-            ////}
-            ////else
-            ////{
-            ////    userRole = "";
-            ////}
-
+           
             var service = new AdministrationService(userID);
             return service;
         }
@@ -173,7 +121,7 @@ namespace CRMMVC.Controllers
                 return RedirectToAction("Departments");
             }
             TempData["SaveResult"] = $"Department {id} was deleted.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Departments");
         }
         //Department Access
         //GET: Department Access
@@ -296,7 +244,37 @@ namespace CRMMVC.Controllers
             return View(model);
         }
         //DELETE: Department Access
-
+        [HttpGet]
+        public ActionResult DepartmentAccessDelete(int? id)
+        {
+            if (id == null)
+            {
+                TempData["InvalidID"] = "Invalid Department Access ID.";
+                return RedirectToAction("Departments");
+            }
+            var service = CreateAdministrationService();
+            int validID = (int)id;
+            var model = service.GetDepartmentAccess(validID);
+            if (model == null)
+            {
+                TempData["InvalidID"] = "Invalid Department Access ID.";
+                return RedirectToAction("DepartmentAccess");
+            }
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DepartmentAccessDelete(int id)
+        {
+            var service = CreateAdministrationService();
+            if (!service.DeleteDepartmentAccess(id))
+            {
+                TempData["InvalidAction"] = "Delete Action Failed.";
+                return RedirectToAction("DepartmentAccess");
+            }
+            TempData["SaveResult"] = $"Department Access {id} was deleted.";
+            return RedirectToAction("DepartmentAccess");
+        }
 
         //GET: Users
         public ActionResult Users()

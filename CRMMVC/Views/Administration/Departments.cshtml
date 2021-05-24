@@ -4,7 +4,7 @@
     ViewBag.Title = "Departments";
 }
 
-<h2>Departments</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create Department", "DepartmentCreate")
@@ -14,13 +14,8 @@
         <th>
             @Html.DisplayNameFor(model => model.DepartmentName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDateUTC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDateUTC)
-        </th>
-        <th></th>
+        
+        <th>Options</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -28,12 +23,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.DepartmentName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDateUTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDateUTC)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "DepartmentEdit", new {id=item.DepartmentID}) |           
             @Html.ActionLink("Delete", "DepartmentDelete", new { id = item.DepartmentID})

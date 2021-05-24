@@ -1,10 +1,10 @@
 ﻿@model CRMModels.Edit.EditDepartment
 
 @{
-    ViewBag.Title = "EditDepartment";
+    ViewBag.Title = "Edit Department";
 }
 
-<h2>EditDepartment</h2>
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>EditDepartment</h4>
+    
     <hr />
     @Html.HiddenFor(m => m.DepartmentID)
 
@@ -33,7 +33,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "/Departments")
 </div>
 
 @section Scripts {

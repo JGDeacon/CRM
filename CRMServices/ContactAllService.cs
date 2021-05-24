@@ -1,5 +1,6 @@
 ﻿using CRMData;
 using CRMModels.Create;
+using CRMModels.Edit;
 using CRMModels.Read;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -26,32 +27,6 @@ namespace CRMServices
             _companyID = ctx.Users.Single(e => e.Id.ToString() == userID.ToString()).CompanyID;
         }
 
-
-        //Create Contact
-        ////public bool CreateContact(CreateContact model)
-        ////{
-        ////    ctx.Contacts.Add(new Contact
-        ////    {
-        ////        FirstName = model.FirstName,
-        ////        LastName = model.LastName,
-        ////        PreferredName = model.PreferredName,
-        ////        Email = model.Email,
-        ////        CellPhone = model.CellPhone,
-        ////        OwnerID = _userID.ToString(),
-        ////    });
-        ////    CreateHistory history = new CreateHistory
-        ////    {
-        ////        CompanyID = _companyID,
-        ////        UserID = _userID.ToString(),
-        ////        Table = "Contact",
-        ////        stringID = null,
-        ////        Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
-        ////    };
-        ////    return AddHistory(history);
-        ////}
-        //Update Contact
-        //Delete Contact
-        //Read Contact
         public IEnumerable<ReadAllContact> GetAllUserContacts()
         {
             List<DepartmentAccess> departmentAccess = ctx.DepartmentAccess.Where(e => e.UserID == _userID.ToString() && e.CompanyID == _companyID).ToList();
@@ -80,54 +55,88 @@ namespace CRMServices
                             });
                         }
                     }
-                }
-                //departmentIDs.Add(item.DepartmentID);
+                }                
             }
-            //List<string> applicationUsers = new List<string>();
-            //foreach (int item in departmentIDs)
-            //{
-            //    foreach (var user in ctx.Users)
-            //    {
-            //        if (user.DepartmentID == item)
-            //        {
-            //            applicationUsers.Add(user.Id);
-            //        }
-            //    }
-            //}
-            //List<ReadAllContact> readContacts = new List<ReadAllContact>();
-            //int permissionID = 0;
-            //string username;
-            //foreach (var user in applicationUsers)
-            //{
-            //    permissionID = ctx.DepartmentAccess.FirstOrDefault(e => e.DepartmentID == ctx.Users.FirstOrDefault(f => f.Id == user).DepartmentID).PermissionID;
-                
-            //    foreach (var contact in ctx.Contacts)
-            //    {
-            //        username = dbx.Users.Single(e => e.Id == contact.OwnerID).UserName;
-            //        if (user == contact.OwnerID)
-            //        {
-            //            readContacts.Add(new ReadAllContact
-            //            {
-            //                ContactID = contact.ContactID,
-            //                FirstName = contact.FirstName,
-            //                LastName = contact.LastName,
-            //                PreferredName = contact.PreferredName,
-            //                Email = contact.Email,
-            //                CellPhone = contact.CellPhone,
-            //                Username = username,
-            //                CreatedDateUTC = contact.CreatedDateUTC,
-            //                ModifiedDateUTC = contact.ModifiedDateUTC,
-            //                PermissionID = permissionID                            
-            //            });
-            //        }
-            //    }
-            //    permissionID = 0;
-            //    username = "";
-            //}
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Contact",
+                stringID = null,
+                Request = "GetAllUserContacts()"
+            };
+            AddHistory(history);
             return readContacts;
         }
-       
+        //Update Contact
+        public EditContact GetContact(int id)
+        {
+            Contact contact = ctx.Contacts.Find(id);
+            EditContact editContact = new EditContact
+            {
+                ContactID = contact.ContactID,
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                PreferredName = contact.PreferredName,
+                Email = contact.Email,
+                CellPhone = contact.CellPhone
+            };
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Contacts",
+                Method = $"GetContact(int id)",
+                stringID = id.ToString(),
+                Request = "GetContact(int id)",
+            };
+            AddHistory(history);
+            return editContact;
+        }
+        public bool ContactEdit(EditContact model)
+        {
+            Contact contact = ctx.Contacts.Find(model.ContactID);
+            if (contact == null)
+            {
+                return false;
+            }
+            contact.FirstName = model.FirstName;
+            contact.LastName = model.LastName;
+            contact.PreferredName = model.PreferredName;
+            contact.Email = model.Email;
+            contact.CellPhone = model.CellPhone;
+            contact.ModifiedDateUTC = DateTimeOffset.UtcNow;
 
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",
+                stringID = model.ContactID.ToString(),
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
+            };
+            return AddHistory(history);
+        }
+        //Delete Contact
+        public bool ContactDelete(int id)
+        {
+            Contact contact = ctx.Contacts.Find(id);
+            if (contact == null)
+            {
+                return false;
+            }
+            ctx.Contacts.Remove(contact);
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Contacts",
+                stringID = id.ToString(),
+                Request = $"DeleteDepartment({id})"
+            };
+            return AddHistory(history);
+        }
+        
         //Helpers
         //Populate History Table
         private bool AddHistory(CreateHistory model)

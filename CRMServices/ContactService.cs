@@ -1,5 +1,6 @@
 ﻿using CRMData;
 using CRMModels.Create;
+using CRMModels.Edit;
 using CRMModels.Read;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -49,7 +50,73 @@ namespace CRMServices
             return AddHistory(history);
         }
         //Update Contact
+        public EditContact GetContact(int id)
+        {
+            Contact contact = ctx.Contacts.Find(id);
+            EditContact editContact = new EditContact
+            {
+                ContactID = contact.ContactID,
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                PreferredName = contact.PreferredName,
+                Email = contact.Email,
+                CellPhone = contact.CellPhone
+            };
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Contacts",
+                Method = $"GetContact(int id)",
+                stringID = id.ToString(),
+                Request = "GetContact(int id)",
+            };
+            AddHistory(history);
+            return editContact;
+        }
+        public bool ContactEdit(EditContact model)
+        {
+            Contact contact = ctx.Contacts.Find(model.ContactID);
+            if (contact == null)
+            {
+                return false;
+            }
+            contact.FirstName = model.FirstName;
+            contact.LastName = model.LastName;
+            contact.PreferredName = model.PreferredName;
+            contact.Email = model.Email;
+            contact.CellPhone = model.CellPhone;
+            contact.ModifiedDateUTC = DateTimeOffset.UtcNow;
+            
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Departments",               
+                stringID = model.ContactID.ToString(),
+                Request = Newtonsoft.Json.JsonConvert.SerializeObject(model)
+            };
+            return AddHistory(history);
+        }
         //Delete Contact
+        public bool ContactDelete(int id)
+        {
+            Contact contact = ctx.Contacts.Find(id);
+            if (contact == null)
+            {
+                return false;
+            }
+            ctx.Contacts.Remove(contact);
+            CreateHistory history = new CreateHistory
+            {
+                CompanyID = _companyID,
+                UserID = _userID.ToString(),
+                Table = "Contacts",
+                stringID = id.ToString(),
+                Request = $"DeleteDepartment({id})"
+            };
+            return AddHistory(history);
+        }
         //Read Contact
         public IEnumerable<ReadContact> GetAllUserContacts()
         {
@@ -68,12 +135,7 @@ namespace CRMServices
         }
         //Read All Contacts
 
-        //Manager Methods
-        //Create
-        //Update Contact
-        //Delete Contact
-        //Read Contact
-        //Read All Contacts
+
 
         //Helpers
         //Populate History Table

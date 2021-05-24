@@ -438,7 +438,7 @@ namespace CRMServices
             return AddHistory(history);
         }
         //Delete DepartmentAccess
-        public bool DeleteDepartmentAccess(string id)
+        public bool DeleteDepartmentAccess(int id)
         {
             DepartmentAccess departmentAccess = ctx.DepartmentAccess.Find(id);
             if (departmentAccess == null)
@@ -559,7 +559,7 @@ namespace CRMServices
             var query = ctx.Users.Where(e => e.CompanyID == _companyID);
             foreach (var item in query)
             {
-                userList.Add(new ReadDepartmentAccessUserList { ID = item.UserNumber, Username = item.UserNumber + " " + item.UserName + " " + item.Id.ToString() });
+                userList.Add(new ReadDepartmentAccessUserList { ID = item.UserNumber, Username = item.UserName });
             }
             return userList;
         }
