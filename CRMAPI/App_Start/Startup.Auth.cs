@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using CRMAPI.Providers;
 using CRMAPI.Models;
+using CRMData;
 
 namespace CRMAPI
 {

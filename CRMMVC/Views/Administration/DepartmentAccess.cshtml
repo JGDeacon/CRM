@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CRMModels.Read.ReadDepartmentAccess>
+
+@{
+    ViewBag.Title = "Department Access";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create Department Access", "DepartmentAccessCreate")
+</p>
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Access)
+        </th>
+        
+        <th>Options</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Access)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "DepartmentAccessEdit", new { id=item.DepartmentAccessID }) |
+            @Html.ActionLink("Delete", "DepartmentAccessDelete", new { id = item.DepartmentAccessID })
+        </td>
+    </tr>
+}
+
+</table>

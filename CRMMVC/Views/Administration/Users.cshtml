@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CRMModels.Read.ReadUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+<body>
+    <h2>Users</h2>
+
+    <p>
+        @Html.ActionLink("Create User", "UserCreate")
+    </p>
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsLocked)
+            </th>
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsLocked)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UserEdit", new { id = item.UserID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using CRMAPI.Models;
 using CRMAPI.Providers;
 using CRMAPI.Results;
+using CRMData;
 
 namespace CRMAPI.Controllers
 {
@@ -328,7 +329,7 @@ namespace CRMAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Username, Email = model.Email,CreatedDateUTC=DateTimeOffset.UtcNow };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
